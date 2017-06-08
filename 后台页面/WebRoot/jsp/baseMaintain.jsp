@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -136,7 +136,7 @@
 									</ul>
 								</li>
 								<li class="menuItem nav-parent opened nav-expanded"
-									${(visitRight[3]==0&&visitRight[4]==0&&visitRight[5]==0&&visitRight[6]==0&&visitRight[7]==0&&visitRight[8]==0&&visitRight[9]==0&&visitRight[10]==0&&visitRight[11]==0)?"style='display:none;'":" "}>
+									${(visitRight[3]==0&&visitRight[4]==0&&visitRight[5]==0&&visitRight[6]==0&&visitRight[7]==0&&visitRight[8]==0&&visitRight[9]==0&&visitRight[10]==0&&visitRight[11]==0&&visitRight[13]==0)?"style='display:none;'":" "}>
 									<a> <i class="icon-copy" aria-hidden="true"></i><span>数据管理</span>
 								</a>
 									<ul class="nav nav-children">
@@ -149,6 +149,8 @@
 													土地租赁维护</span></a></li>
 										<li ${visitRight[5]==0?"style='display:none;'":" "}><a
 											href="baseMaintain.jsp"><span class="text"> 实习基地维护</span></a></li>
+										<li ${visitRight[13]==0?"style='display:none;'":" "}><a
+											href="Professionalmanage.jsp"><span class="text"> 实习专业维护</span></a></li>
 										<li ${visitRight[11]==0?"style='display:none;'":" "}><a
 											href="Repairmanage.jsp"><span class="text"> 报修信息维护</span></a></li>
 										<li ${visitRight[7]==0?"style='display:none;'":" "}><a
@@ -403,26 +405,27 @@
 									role="form" id="applyeditform">
 									<table class="table" id="tableupdate">
 										<tr>
-											<td>基地编号：</td>
+											<td>基地<br>编号</td>
 											<td><input type="text" id="baseid" disabled
 												class="form-control" /></td>
-											<td>基地名称 ：</td>
+											<input type="hidden" id="hiddenbaseid"class="form-control" /><!-- 隐藏框by jimao -->
+											<td>基地<br>名称 </td>
 											<td><input type="text" id="basenamed"
 												class="form-control"><span id="display"
 												style="color:#f00;"> </span></td>
 										</tr>
 										<tr>
-											<td>基地类型 ：</td>
+											<td>基地<br>类型 </td>
 											<td><select class="form-control" id="basetyped"
 												name="TYPE	">
 													<option id="basetype1" value="">请选择</option>
 											</select></td>
-											<td>申请部门 ：</td>
+											<td>申请<br>部门 </td>
 											<td><input type="text" id="dept0d" disabled
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>土地面积 ：</td>
+											<td>土地<br>面积 </td>
 											<td>
 												<div class="input-group">
 													<input type="text" id="landaread" class="form-control" />
@@ -435,7 +438,7 @@
 													</span>
 												</div>
 											</td>
-											<td>建筑面积 ：</td>
+											<td>建筑<br>面积 </td>
 											<td>
 												<div class="input-group">
 													<input type="text" id="buildingaread" class="form-control">
@@ -454,65 +457,73 @@
 
 										</tr>
 										<tr>
-											<td>可承担人数 ：</td>
+											<td>可　承<br>担人数 </td>
 											<td><input type="text" id="undertakeCountd"
 												class="form-control"></td>
-											<td>法定责任人 ：</td>
+											<td>法　定<br>责任人 </td>
 											<td><input type="text" id="personDuty"
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>基地联系人 ：</td>
+											<td>基　地<br>联系人 </td>
 											<td><input type="text" id="usernamed"
 												class="form-control"></td>
-											<td>基地联系人电话 ：</td>
+											<td>基地<br>联系人电话 </td>
 											<td><input type="text" id="userphoned"
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>学院联系人 ：</td>
+											<td>学院联系　人 </td>
 											<td><input type="text" id="collegenamed"
 												class="form-control"></td>
-											<td>学院联系人电话 ：</td>
+											<td>学院联系人电话 </td>
 											<td><input type="text" id="collegephoned"
 												class="form-control"></td>
 										</tr>
 										<tr id="resourcetr">
-											<td>申请材料 ：</td>
+											<td>申请材料 </td>
 											<td colspan="3" style="text-align:left;"><a
 												id="resourced" href="#" style="color:#3071a9;">点击查看</a></td>
 										</tr>
 										<tr>
-											<td>面向专业 ：</td>
-											<td colspan="3">
-											 <!--  <span class="btn btn-primary" id="chooseMajor">请选择</span> -->
-											  <div id="major_orientedd"
-													style="border:#ccc 1px solid;height:80px;"
-													class="form-control">													
-											 </div>											 
+											<td>面向<br>专业 </td>
+											<td>
+												<div class="col-md-6" data-toggle="modal"
+													data-target="#myModal1" id="chooseMajor">
+													<span class="btn btn-primary">请选择</span>
+												</div>
 											</td>
-
 										</tr>
 
 										<tr>
-											<td>通信地址 ：</td>
+											<td></td>
+											<td colspan="3">
+												<div id="major_orientedd1"
+													style="border:#ccc 1px solid;height:100px;"
+													class="form-control elseText">													
+											 	</div>
+											</td>
+										</tr>
+
+										<tr>
+											<td>通信<br>地址 </td>
 											<td colspan="3"><textarea class="form-control" rows="3"
 													id="linkAddressd"></textarea></td>
 
 										</tr>
 										<tr id="hidecol">
-											<td>星级：</td>
+											<td>星级</td>
 											<td colspan="3">
-												<div id="starget"
+												<div class="Estar" id="starget"
 													${college==null?"":"style='pointer-events: none;'"}></div>
 											</td>
 										</tr>
 										<tr id="hidecol">
 
-											<td>创建时间：</td>
+											<td id="CJ1">创建<br>时间</td>
 											<td><input type="text" id="setdated" disabled
 												class="form-control"></td>
-											<td>截止日期 ：</td>
+											<td>截止日期 </td>
 											<td><input type="text" id="adddate"
 												${college==null?"":"disabled='disabled'"}
 												class="laydate-icon"></td>
@@ -550,7 +561,7 @@
 								<div class="modal-body">
 									<div class="row" style="margin-bottom: 30px;">
 										<div class="col-sm-12 form-inline">
-											<lable>面向专业:</lable>
+											<lable>面向专业</lable>
 											<input id="showmajor" type="text"
 												class="form-control exeWidth" value="">
 										</div>
@@ -601,52 +612,53 @@
 									role="form" id="applyeditform">
 									<table class="table" id="tableupdate">
 										<tr>
-											<td>基地编号：</td>
+											<td>基地<br>编号</td>
 											<td><input type="text" id="baseid" disabled
 												class="form-control" /></td>
-											<td>基地类型 ：</td>
+											<input type="hidden" id="hiddenbaseid" class="form-control" /><!-- 隐藏框 jimao -->
+											<td>基地<br>类型 </td>
 											<td><select class="form-control" id="basetyped"
 												name="TYPE	">
 													<option id="basetype1" value="">请选择</option>
 											</select></td>
 										</tr>
 										<tr>
-											<td>合作单位名称 ：</td>
+											<td>合作<br>单位名称 </td>
 											<td><input type="text" id="unitName"
 												class="form-control"><span id="display"
 												style="color:#f00;"> </span></td>
-											<td>基地名称 ：</td>
+											<td>基地<br>名称 </td>
 											<td><input type="text" id="basenamed"
 												class="form-control"><span id="display"
 												style="color:#f00;"> </span></td>
 
 										</tr>
 										<tr>
-											<td>申请部门 ：</td>
+											<td>申请<br>部门 </td>
 											<td><input type="text" id="dept0d" disabled
 												class="form-control"></td>
-											<td>法定责任人 ：</td>
+											<td>法定<br>责任人 </td>
 											<td><input type="text" id="personDuty"
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>基地联系人 ：</td>
+											<td>基地<br>联系人 </td>
 											<td><input type="text" id="usernamed"
 												class="form-control"></td>
-											<td>基地联系人电话 ：</td>
+											<td>基地<br>联系人电话 </td>
 											<td><input type="text" id="userphoned"
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>服务团队负责人 ：</td>
+											<td>服务团队负责人 </td>
 											<td><input type="text" id="collegenamed"
 												class="form-control"></td>
-											<td>服务团队负责人电话 ：</td>
+											<td>服务团队负责人电话</td>
 											<td><input type="text" id="collegephoned"
 												class="form-control"></td>
 										</tr>
 										<tr>
-											<td>土地面积 ：</td>
+											<td>土地<br>面积 </td>
 											<td>
 												<div class="input-group">
 													<input type="text" id="landaread" class="form-control" />
@@ -659,7 +671,7 @@
 													</span>
 												</div>
 											</td>
-											<td>建筑面积 ：</td>
+											<td>建筑<br>面积 </td>
 											<td>
 												<div class="input-group">
 													<input type="text" id="buildingaread" class="form-control">
@@ -673,32 +685,54 @@
 											</td>
 										</tr>
 										<tr>
-											<td>可承担人数 ：</td>
+											<td>可承<br>担人数 </td>
 											<td><input type="text" id="undertakeCountd"
 												class="form-control"></td>
 											<td colspan="2"></td>
 										</tr>
 										<tr id="resourcetr">
-											<td>申请材料 ：</td>
+											<td>申请材料 </td>
 											<td colspan="3" style="text-align:left;"><a
 												id="resourced" href="#" style="color:#3071a9;">点击查看</a></td>
 										</tr>
-										<tr>
-											<td>面向专业 ：</td>
+										<!-- <tr>
+											<td>面向<br>专业 </td>
 											<td colspan="3"><div id="major_orientedd"
 													style="border:#ccc 1px solid;height:80px;"
 													class="form-control"></div></td>
 
+										</tr> -->
+										<tr>
+											<td>面向<br>专业 </td>
+											<td>
+												<div class="col-md-6" data-toggle="modal"
+													data-target="#myModal1" id="chooseMajor">
+													<span class="btn btn-primary">请选择</span>
+												</div>
+											</td>
 										</tr>
 
 										<tr>
-											<td>通信地址 ：</td>
+											<td></td>
+											<td colspan="3">
+												<div id="major_orientedd"
+													style="border:#ccc 1px solid;height:100px;"
+													class="form-control XNtext">													
+											 	</div>
+											</td>
+										</tr>
+										
+										
+										
+
+										<tr>
+											<td>通信<br>地址 </td>
 											<td colspan="3"><textarea class="form-control" rows="3"
 													id="linkAddressd"></textarea></td>
 
 										</tr>
 										<tr id="hidecol">
-											<td>星级：</td>
+											<td>星级</td>
 											<td colspan="3">
 												<div id="starget"
 													${college==null?"":"style='pointer-events: none;'"}></div>
@@ -706,10 +740,10 @@
 										</tr>
 										<tr id="hidecol">
 
-											<td>创建时间：</td>
+											<td id="CJ1">基地创建<br>时间</td>
 											<td><input type="text" id="setdated" disabled
 												class="form-control"></td>
-											<td>截止日期 ：</td>
+											<td>截止日期 </td>
 											<td><input type="text" id="adddate"
 												${college==null?"":"disabled='disabled'"}
 												class="laydate-icon"></td>
@@ -781,6 +815,54 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- Modal1 -->
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="border:#416793 8px solid">
+						<div class="modal-header">
+
+							<div class="glyphicon glyphicon-remove closeModal  closeit"
+								data-dismiss="modal"></div>
+
+
+						</div>
+						<div class="modal-body">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-md-3 control-label fontDire">学院:</label>
+
+									<div class="col-md-5">
+										<select class="form-control" id="deptSelectOne1">
+											<option id="deptSelect1" value="">请选择</option>
+										</select>
+									</div>
+
+								</div>
+								<div class="form-group ">
+									<label class="col-md-3 control-label fontDire">可选专业:</label>
+									<div class="col-md-6 majorhide1">
+										<!-- <span class="majorcheck"><input type='checkbox' id='majorcheck' value='1' class='计算机'/><label>计算机</label>	</span>
+									<span class="majorcheck"><input type='checkbox' id='majorcheck' value='1' class='电商'/><label>电商</label>	</span> -->
+									</div>
+
+								</div>
+								<div class="form-group" id="majormain1">
+									<label class="col-md-3 control-label fontDire">已选专业:</label>
+									<div class="col-md-6 " id="majorSuo1"></div>
+								</div>
+							</form>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary confirm1"
+									data-dismiss="modal">确定</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 			<div class="modal fade" id="export" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -885,6 +967,7 @@
 						</div>
 
 						<div class="form-group">
+							<input type="hidden" name="applyName"  id="applyNameId" /><!--隐藏的input框  -->
 							<label class="col-md-3 control-label">申报部门<span
 								class="setTag">*</span></label>
 							<div class="col-md-6">
@@ -1029,7 +1112,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label">创建日期<span
+							<label class="col-md-3 control-label" id="CJ">创建日期<span
 								class="setTag">*</span></label>
 							<div class="col-md-6">
 								<input type="text" id="validdastart" name="start_time"

@@ -30,11 +30,12 @@ $(document).ready(function() {
 				
 			}
 			
-			for ( var i=0;i<data[1].length;i++) {				
+			for ( var i=0;i<data[1].length;i++) {
+				if(i !== 5){
 				$("#basetype").after(
 						"<option value="+data[1][i].id+">"
 								+ data[1][i].name + "</option>");				
-				
+				}
 			}	
 			
 		}
@@ -146,7 +147,7 @@ $(document).on("change", "#deptSelectOne", function() {
 				$(".majorhide").append(
 						"<span class='majorcheck'><input type='checkbox' placeholder='"+id+"' value='"+data[i].mid+"' class='"+data[i].mname+"'/><label>"+data[i].mname+"</label></span>");				
 				}
-			}			
+			}
 		}
 
 	});
@@ -189,10 +190,13 @@ $(document).on("click", "#hit", function() {
 	var content=$("#textContent").html();
 	if(content==null||content==""){	
 	  $("#majormain").css("display","none");
+	  $("#majorSuo").html(content);
 	  return;
-	}
+	}else{
+	$("#majormain").css("display","block");
 	$("#majorSuo").html(content);	
 	$("#majorSuo input").prop("hidden",false);
+	}
 });
 
 $(document).on("click", ".confirm", function() {
@@ -216,6 +220,8 @@ $(document).on("click", ".closeit", function() {
 
 $(document).on("click", "#submitForm", function() {
 	var basename=$("#basename").val();
+	var applyName = $("#deptty").find("option:selected").text();//获取下拉列表的文本-- by jimao
+	$("#applyNameId").val(applyName);							//获取隐藏input的文本值
 	var deptty=$("#deptty").val();
 	var basetype=$("#basetype0").val();
 	var baseaddress=$("#baseaddress").val();
@@ -312,13 +318,13 @@ $(document).on("click", "#submitForm", function() {
 		});
 	 return;	
 	}
-	if(personTel==""){
+	/*if(personTel==""){
 		bootbox.alert({
 			message : "请填写基地联系人电话",
 			size : 'small'
 		});
 	 return;	
-	}
+	}*/
 	if(collegeNameIt==""){
 		msgCollege=(basetype==2?"请填写服务团队负责人":"请填写学院联系人");
 		bootbox.alert({
@@ -327,14 +333,14 @@ $(document).on("click", "#submitForm", function() {
 		});
 	 return;	
 	}
-	if(collegeTelIt==""){
+	/*if(collegeTelIt==""){
 		msgCollege=(basetype==2?"请填写服务团队负责人电话":"请填写学院联系人电话");
 		bootbox.alert({
 			message : msgCollege,
 			size : 'small'
 		});
 	 return;	
-	}
+	}*/
 	if(unitIt==""){
 		if(basetype==2){
 			bootbox.alert({
@@ -427,14 +433,14 @@ $(document).on("change", "#basetype0", function() {
 		$("#addspan").append("<span class='setTag'>*</span>");
 		$("#societyBaseShow").show();
 		$(".collegeNameIt").html("服务团队负责人"+'<span class="setTag">*</span>');
-		$(".collegeTelIt").html("服务团队负责人电话"+'<span class="setTag">*</span>');
+		$(".collegeTelIt").html("服务团队负责人电话"+'<span class="setTag"></span>');
 		$("#collegeNameIt").val('');
 		$("#collegeTelIt").val('');
 		$("#unitShow").show();			
 	}
 	if(basetype0!=2&&formerValue==2){
 		$(".collegeNameIt").html("学院联系人"+'<span class="setTag">*</span>');
-		$(".collegeTelIt").html("学院联系人电话"+'<span class="setTag">*</span>');	
+		$(".collegeTelIt").html("学院联系人电话"+'<span class="setTag"></span>');	
 		$("#collegeNameIt").val('');
 		$("#collegeTelIt").val('');
 	}	
